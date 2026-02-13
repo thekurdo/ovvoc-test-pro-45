@@ -135,7 +135,7 @@ describe('Express v4 Patterns', () => {
     expect(res.body.error).toBe('API endpoint not found');
   });
 
-  test('app.del() alias works for DELETE', async () => {
+  test('app.delete() alias works for DELETE', async () => {
     const res = await request(app).delete('/api/cleanup');
     expect(res.status).toBe(200);
     expect(res.body.message).toBe('Cleanup completed');
