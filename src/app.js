@@ -25,19 +25,19 @@ function createApp() {
   app.use('/api/rooms', roomsRouter);
   app.use('/api/rooms', messagesRouter);
 
-  // Express v4 app.del() alias for app.delete()
-  app.del('/api/cleanup', (req, res) => {
+  // Express v4 app.delete() alias for app.delete()
+  app.delete('/api/cleanup', (req, res) => {
     res.json({ message: 'Cleanup completed' });
   });
 
   // Express v4 optional param pattern :format?
-  app.get('/api/export/:format?', (req, res) => {
+  app.get('/api/export{/:format}', (req, res) => {
     const format = req.params.format || 'json';
     res.json({ format, message: `Exporting as ${format}` });
   });
 
   // Express v4 wildcard pattern: catch-all with * (must be LAST)
-  app.get('/api/*', (req, res) => {
+  app.get('/api/{*path}', (req, res) => {
     res.status(404).json({ error: 'API endpoint not found' });
   });
 
